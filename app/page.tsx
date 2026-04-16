@@ -94,15 +94,43 @@ export default function Home() {
           ))}
         </motion.div>
 
+        {/* CTA buttons */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          transition={{ duration: 0.4, delay: 0.24 }}
+          className="flex flex-col sm:flex-row gap-3"
+        >
+          {/* TODO: Link to /schools */}
+          <button
+            className="px-7 py-3 rounded-full text-sm font-semibold text-white transition-opacity hover:opacity-80"
+            style={{ backgroundColor: "#0f172a" }}
+          >
+            Explore all schools
+          </button>
+          {/* TODO: Link to /compare */}
+          <button
+            className="px-7 py-3 rounded-full text-sm font-semibold transition-colors hover:opacity-80"
+            style={{
+              border: "1px solid #e2e8f0",
+              color: "#0f172a",
+              backgroundColor: "#e9edf2",
+            }}
+          >
+            Compare schools
+          </button>
+        </motion.div>
+
       </div>
 
-      {/* School marquee — full bleed with tinted background */}
+      {/* School marquee — full bleed at bottom */}
       <motion.div
         variants={fadeUp}
         initial="hidden"
         animate="show"
-        transition={{ duration: 0.4, delay: 0.24 }}
-        className="w-full py-10 mt-8"
+        transition={{ duration: 0.4, delay: 0.32 }}
+        className="w-full py-10 mt-16"
         style={{ backgroundColor: "#f1f5f9" }}
       >
         <div
@@ -112,7 +140,6 @@ export default function Home() {
             WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
           }}
         >
-          {/* Duplicate schools for seamless loop */}
           <div
             className="flex gap-12"
             style={{ animation: "marquee 35s linear infinite", width: "max-content" }}
@@ -141,37 +168,6 @@ export default function Home() {
         </div>
       </motion.div>
 
-      <div className="w-full max-w-5xl flex flex-col items-center px-6">
-
-        {/* CTA buttons */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          transition={{ duration: 0.4, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-3 mt-8"
-        >
-          {/* TODO: Link to /schools */}
-          <button
-            className="px-7 py-3 rounded-full text-sm font-semibold text-white transition-opacity hover:opacity-80"
-            style={{ backgroundColor: "#0f172a" }}
-          >
-            Explore all schools
-          </button>
-          {/* TODO: Link to /compare */}
-          <button
-            className="px-7 py-3 rounded-full text-sm font-semibold transition-colors hover:opacity-80"
-            style={{
-              border: "1px solid #e2e8f0",
-              color: "#0f172a",
-              backgroundColor: "#e9edf2",
-            }}
-          >
-            Compare schools
-          </button>
-        </motion.div>
-
-      </div>
     </main>
   );
 }
