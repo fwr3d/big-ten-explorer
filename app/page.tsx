@@ -130,7 +130,7 @@ export default function Home() {
         initial="hidden"
         animate="show"
         transition={{ duration: 0.4, delay: 0.32 }}
-        className="w-full py-10 mt-16"
+        className="w-full py-10 mt-40"
         style={{ backgroundColor: "#f1f5f9" }}
       >
         <div
