@@ -45,10 +45,10 @@ const fadeUp = {
 export default function Home() {
   return (
     <main
-      className="min-h-screen flex flex-col items-center py-20"
+      className="min-h-screen flex flex-col items-center"
       style={{ backgroundColor: "#f8f9fb", color: "#0f172a" }}
     >
-      <div className="w-full max-w-5xl flex flex-col items-center gap-12 px-6">
+      <div className="flex-1 w-full max-w-5xl flex flex-col items-center justify-center gap-12 px-6">
 
         {/* Headline */}
         <motion.div
