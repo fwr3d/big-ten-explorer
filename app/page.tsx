@@ -58,16 +58,16 @@ export default function Home() {
           transition={{ duration: 0.4 }}
           className="flex flex-col items-center text-center gap-5"
         >
-          <h1 className="flex items-center justify-center gap-5 text-6xl sm:text-7xl font-black tracking-tighter leading-none">
+          <h1 className="flex items-center justify-center gap-6 text-7xl sm:text-8xl font-black tracking-tighter leading-none">
             <img
               src={`https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent("Big_Ten_Conference_logo.svg")}?width=200`}
               alt="Big Ten Conference logo"
-              className="h-14 sm:h-16 w-auto object-contain"
+              className="h-16 sm:h-20 w-auto object-contain"
             />
             Explorer
           </h1>
           <p
-            className="text-base sm:text-lg max-w-sm mx-auto leading-relaxed"
+            className="text-lg sm:text-xl max-w-sm mx-auto leading-relaxed"
             style={{ color: "#94a3b8" }}
           >
             18 universities. 900,000+ students. One conference.
@@ -84,7 +84,7 @@ export default function Home() {
         >
           {STATS.map((stat) => (
             <div key={stat.label} className="flex flex-col items-center gap-1">
-              <span className="text-3xl font-black tracking-tight" style={{ color: "#0f172a" }}>
+              <span className="text-4xl font-black tracking-tight" style={{ color: "#0f172a" }}>
                 {stat.value}
               </span>
               <span className="text-xs font-medium uppercase tracking-widest" style={{ color: "#cbd5e1" }}>
