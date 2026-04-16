@@ -22,8 +22,6 @@ export default async function SchoolPage({ params }: { params: Promise<{ id: str
     const {id: slug} = await params;
     const id = getIdBySlug(slug);
 
-    console.log("params.id:", params.id);
-console.log("found id:", id);
     if(!id) return <div>School not found</div>
     const university = await fetchUniversityById(id)
     if (!university) return <div>School not found</div>;
