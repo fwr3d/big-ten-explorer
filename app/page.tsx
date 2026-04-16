@@ -45,22 +45,23 @@ const fadeUp = {
 export default function Home() {
   return (
     <main
-      className="min-h-screen flex flex-col items-center px-6 py-20"
+      className="min-h-screen flex flex-col items-center py-20"
       style={{ backgroundColor: "#f8f9fb", color: "#0f172a" }}
     >
-      <div className="w-full max-w-5xl flex flex-col items-center gap-10">
+      <div className="w-full max-w-5xl flex flex-col items-center gap-12 px-6">
 
-        {/* Eyebrow */}
-        <motion.p
+        {/* Eyebrow pill */}
+        <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="show"
           transition={{ duration: 0.4 }}
-          className="text-xs font-semibold tracking-widest uppercase"
-          style={{ color: "#3b82f6" }}
+          className="flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide"
+          style={{ backgroundColor: "#e0eaff", color: "#3b82f6" }}
         >
-          Conference Explorer
-        </motion.p>
+          <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ backgroundColor: "#3b82f6" }} />
+          2024–25 Season
+        </motion.div>
 
         {/* Headline */}
         <motion.div
@@ -68,9 +69,9 @@ export default function Home() {
           initial="hidden"
           animate="show"
           transition={{ duration: 0.4, delay: 0.08 }}
-          className="flex flex-col items-center text-center gap-4"
+          className="flex flex-col items-center text-center gap-5"
         >
-          <h1 className="flex items-center justify-center gap-4 text-5xl sm:text-6xl font-bold tracking-tight leading-tight">
+          <h1 className="flex items-center justify-center gap-5 text-6xl sm:text-7xl font-black tracking-tighter leading-none">
             <img
               src={`https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent("Big_Ten_Conference_logo.svg")}?width=200`}
               alt="Big Ten Conference logo"
@@ -79,11 +80,10 @@ export default function Home() {
             Explorer
           </h1>
           <p
-            className="mt-4 text-lg max-w-md mx-auto leading-relaxed"
+            className="text-base sm:text-lg max-w-sm mx-auto leading-relaxed"
             style={{ color: "#94a3b8" }}
           >
-            Browse universities, compare colleges, and explore programs
-            across the Big Ten Conference.
+            18 universities. 900,000+ students. One conference.
           </p>
         </motion.div>
 
@@ -93,62 +93,68 @@ export default function Home() {
           initial="hidden"
           animate="show"
           transition={{ duration: 0.4, delay: 0.16 }}
-          className="flex flex-wrap justify-center gap-8 sm:gap-14"
+          className="flex flex-wrap justify-center gap-10 sm:gap-16"
         >
           {STATS.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center gap-0.5">
-              <span className="text-2xl font-bold" style={{ color: "#0f172a" }}>
+            <div key={stat.label} className="flex flex-col items-center gap-1">
+              <span className="text-3xl font-black tracking-tight" style={{ color: "#0f172a" }}>
                 {stat.value}
               </span>
-              <span className="text-sm" style={{ color: "#94a3b8" }}>
+              <span className="text-xs font-medium uppercase tracking-widest" style={{ color: "#cbd5e1" }}>
                 {stat.label}
               </span>
             </div>
           ))}
         </motion.div>
 
-        {/* Divider */}
-        <div className="w-full" style={{ borderTop: "1px solid #e2e8f0" }} />
+      </div>
 
-        {/* School marquee */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          transition={{ duration: 0.4, delay: 0.24 }}
-          className="w-full overflow-hidden relative"
+      {/* School marquee — full bleed with tinted background */}
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        animate="show"
+        transition={{ duration: 0.4, delay: 0.24 }}
+        className="w-full py-10 mt-8"
+        style={{ backgroundColor: "#f1f5f9" }}
+      >
+        <div
+          className="overflow-hidden"
           style={{
-            maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-            WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+            maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+            WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
           }}
         >
           {/* Duplicate schools for seamless loop */}
           <div
-            className="flex gap-10"
-            style={{ animation: "marquee 30s linear infinite", width: "max-content" }}
+            className="flex gap-12"
+            style={{ animation: "marquee 35s linear infinite", width: "max-content" }}
           >
             {[...SCHOOLS, ...SCHOOLS].map((school, i) => (
               <div
                 key={i}
                 className="flex flex-col items-center gap-3 cursor-pointer"
-                style={{ width: "80px" }}
+                style={{ width: "88px" }}
               >
                 {/* TODO: Link to /schools/[id] page */}
                 <img
                   src={school.logo}
                   alt={`${school.name} logo`}
-                  className="w-16 h-16 object-contain"
+                  className="w-20 h-20 object-contain"
                 />
                 <span
                   className="text-xs font-medium text-center leading-tight"
-                  style={{ color: "#0f172a" }}
+                  style={{ color: "#64748b" }}
                 >
                   {school.name}
                 </span>
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
+      </motion.div>
+
+      <div className="w-full max-w-5xl flex flex-col items-center px-6">
 
         {/* CTA buttons */}
         <motion.div
@@ -156,7 +162,7 @@ export default function Home() {
           initial="hidden"
           animate="show"
           transition={{ duration: 0.4, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-3 mt-2"
+          className="flex flex-col sm:flex-row gap-3 mt-8"
         >
           {/* TODO: Link to /schools */}
           <button
@@ -167,11 +173,11 @@ export default function Home() {
           </button>
           {/* TODO: Link to /compare */}
           <button
-            className="px-7 py-3 rounded-full text-sm font-semibold transition-colors hover:bg-blue-50"
+            className="px-7 py-3 rounded-full text-sm font-semibold transition-colors hover:opacity-80"
             style={{
               border: "1px solid #e2e8f0",
               color: "#0f172a",
-              backgroundColor: "#ffffff",
+              backgroundColor: "#e9edf2",
             }}
           >
             Compare schools
