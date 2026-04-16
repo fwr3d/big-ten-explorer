@@ -68,13 +68,20 @@ export default function Home() {
           initial="hidden"
           animate="show"
           transition={{ duration: 0.4, delay: 0.08 }}
-          className="text-center"
+          className="flex flex-col items-center text-center gap-4"
         >
-          <h1 className="text-5xl sm:text-6xl font-bold tracking-tight leading-tight">
-            Big{" "}
-            <span style={{ color: "#3b82f6" }}>Ten</span>{" "}
-            Explorer
-          </h1>
+          <div className="flex items-center justify-center gap-4">
+            <img
+              src={`https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent("Big_Ten_Conference_logo.svg")}?width=80`}
+              alt="Big Ten Conference logo"
+              className="h-12 w-auto object-contain"
+            />
+            <h1 className="text-5xl sm:text-6xl font-bold tracking-tight leading-tight">
+              Big{" "}
+              <span style={{ color: "#3b82f6" }}>Ten</span>{" "}
+              Explorer
+            </h1>
+          </div>
           <p
             className="mt-4 text-lg max-w-md mx-auto leading-relaxed"
             style={{ color: "#94a3b8" }}
