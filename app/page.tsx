@@ -130,7 +130,7 @@ export default function Home() {
         initial="hidden"
         animate="show"
         transition={{ duration: 0.4, delay: 0.32 }}
-        className="absolute bottom-0 left-0 right-0 py-10"
+        className="absolute bottom-16 left-0 right-0 py-10"
         style={{ backgroundColor: "#f1f5f9" }}
       >
         <div
