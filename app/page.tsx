@@ -3,25 +3,29 @@
 import { motion } from "framer-motion";
 
 // TODO: Replace with real data fetched from /lib/api.ts
+// Logos sourced from Wikimedia Commons (Special:FilePath redirect)
+const WIKI_LOGO = (file: string) =>
+  `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=200`;
+
 const SCHOOLS = [
-  { name: "Michigan",       initials: "UM",  color: "#00274C" },
-  { name: "Michigan State", initials: "MSU", color: "#18453B" },
-  { name: "Ohio State",     initials: "OSU", color: "#BB0000" },
-  { name: "Penn State",     initials: "PSU", color: "#002D62" },
-  { name: "Indiana",        initials: "IU",  color: "#990000" },
-  { name: "Purdue",         initials: "PU",  color: "#B07C2C" },
-  { name: "Northwestern",   initials: "NU",  color: "#4E2A84" },
-  { name: "Illinois",       initials: "ILL", color: "#E84A27" },
-  { name: "Wisconsin",      initials: "UW",  color: "#C5050C" },
-  { name: "Minnesota",      initials: "UMN", color: "#7A0019" },
-  { name: "Iowa",           initials: "UI",  color: "#C8A800" },
-  { name: "Nebraska",       initials: "UNL", color: "#E41C38" },
-  { name: "Rutgers",        initials: "RU",  color: "#CC0033" },
-  { name: "Maryland",       initials: "UMD", color: "#E03A3E" },
-  { name: "USC",            initials: "USC", color: "#990000" },
-  { name: "UCLA",           initials: "UCLA",color: "#2774AE" },
-  { name: "Oregon",         initials: "UO",  color: "#007030" },
-  { name: "Washington",     initials: "UW",  color: "#4B2E83" },
+  { name: "Michigan",       logo: WIKI_LOGO("Michigan_Wolverines_logo.svg")              },
+  { name: "Michigan State", logo: WIKI_LOGO("Michigan_State_Spartans_alternate_logo.svg") },
+  { name: "Ohio State",     logo: WIKI_LOGO("Ohio_State_Buckeyes_logo.svg")               },
+  { name: "Penn State",     logo: WIKI_LOGO("Penn_State_Athletics_wordmark.svg")          },
+  { name: "Indiana",        logo: WIKI_LOGO("Indiana_Hoosiers_logo.svg")                  },
+  { name: "Purdue",         logo: WIKI_LOGO("Purdue_Boilermakers_logo.svg")               },
+  { name: "Northwestern",   logo: WIKI_LOGO("Northwestern_Wildcats_logo.svg")             },
+  { name: "Illinois",       logo: WIKI_LOGO("Illinois_Fighting_Illini_logo.svg")          },
+  { name: "Wisconsin",      logo: WIKI_LOGO("Wisconsin_Badgers_logo.svg")                 },
+  { name: "Minnesota",      logo: WIKI_LOGO("Minnesota_Golden_Gophers_logo.svg")          },
+  { name: "Iowa",           logo: WIKI_LOGO("Hawkeye_Logo.svg")                           },
+  { name: "Nebraska",       logo: WIKI_LOGO("Nebraska_Cornhuskers_logo.svg")              },
+  { name: "Rutgers",        logo: WIKI_LOGO("Rutgers_Scarlet_Knights_logo.svg")           },
+  { name: "Maryland",       logo: WIKI_LOGO("Maryland_Terrapins_logo.svg")                },
+  { name: "USC",            logo: WIKI_LOGO("USC_Trojans_logo.svg")                       },
+  { name: "UCLA",           logo: WIKI_LOGO("UCLA_Bruins_logo.svg")                       },
+  { name: "Oregon",         logo: WIKI_LOGO("Oregon_Ducks_logo.svg")                      },
+  { name: "Washington",     logo: WIKI_LOGO("Washington_Huskies_logo.svg")                },
 ];
 
 const STATS = [
@@ -121,13 +125,12 @@ export default function Home() {
                 transition: "box-shadow 0.2s, transform 0.2s",
               }}
             >
-              {/* Initials avatar */}
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xs"
-                style={{ backgroundColor: school.color }}
-              >
-                {school.initials}
-              </div>
+              {/* School logo via Wikimedia Commons */}
+              <img
+                src={school.logo}
+                alt={`${school.name} logo`}
+                className="w-12 h-12 object-contain"
+              />
               {/* School name */}
               <span
                 className="text-xs font-medium text-center leading-tight"
