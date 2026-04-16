@@ -3,29 +3,31 @@
 import { motion } from "framer-motion";
 
 // TODO: Replace with real data fetched from /lib/api.ts
-// Logos sourced from Wikimedia Commons (Special:FilePath redirect)
+// Logos: Wikimedia Commons where available, ESPN CDN fallback where Wikimedia lacks the actual athletic mark
 const WIKI_LOGO = (file: string) =>
   `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=200`;
+const ESPN_LOGO = (id: number) =>
+  `https://a.espncdn.com/i/teamlogos/ncaa/500/${id}.png`;
 
 const SCHOOLS = [
-  { name: "Michigan",       logo: WIKI_LOGO("Michigan_Wolverines_logo.svg")              },
-  { name: "Michigan State", logo: WIKI_LOGO("Michigan_State_Spartans_alternate_logo.svg") },
-  { name: "Ohio State",     logo: WIKI_LOGO("Ohio_State_Buckeyes_logo.svg")               },
-  { name: "Penn State",     logo: WIKI_LOGO("Penn_State_Athletics_wordmark.svg")          },
-  { name: "Indiana",        logo: WIKI_LOGO("Indiana_Hoosiers_logo.svg")                  },
-  { name: "Purdue",         logo: WIKI_LOGO("Purdue_Boilermakers_logo.svg")               },
-  { name: "Northwestern",   logo: WIKI_LOGO("Northwestern_Wildcats_logo.svg")             },
-  { name: "Illinois",       logo: WIKI_LOGO("Illinois_Fighting_Illini_logo.svg")          },
-  { name: "Wisconsin",      logo: WIKI_LOGO("Wisconsin_Badgers_logo.svg")                 },
-  { name: "Minnesota",      logo: WIKI_LOGO("Minnesota_Golden_Gophers_logo.svg")          },
-  { name: "Iowa",           logo: WIKI_LOGO("Hawkeye_Logo.svg")                           },
-  { name: "Nebraska",       logo: WIKI_LOGO("Nebraska_Cornhuskers_logo.svg")              },
-  { name: "Rutgers",        logo: WIKI_LOGO("Rutgers_Scarlet_Knights_logo.svg")           },
-  { name: "Maryland",       logo: WIKI_LOGO("Maryland_Terrapins_logo.svg")                },
-  { name: "USC",            logo: WIKI_LOGO("USC_Trojans_logo.svg")                       },
-  { name: "UCLA",           logo: WIKI_LOGO("UCLA_Bruins_logo.svg")                       },
-  { name: "Oregon",         logo: WIKI_LOGO("Oregon_Ducks_logo.svg")                      },
-  { name: "Washington",     logo: WIKI_LOGO("Washington_Huskies_logo.svg")                },
+  { name: "Michigan",       logo: WIKI_LOGO("Michigan_Wolverines_logo.svg")     },
+  { name: "Michigan State", logo: ESPN_LOGO(127)                                 }, // no Spartan head on Wikimedia
+  { name: "Ohio State",     logo: WIKI_LOGO("Ohio_State_Buckeyes_logo.svg")     },
+  { name: "Penn State",     logo: ESPN_LOGO(213)                                 }, // only wordmarks on Wikimedia
+  { name: "Indiana",        logo: WIKI_LOGO("Indiana_Hoosiers_logo.svg")        },
+  { name: "Purdue",         logo: WIKI_LOGO("Purdue_Boilermakers_logo.svg")     },
+  { name: "Northwestern",   logo: WIKI_LOGO("Northwestern_Wildcats_logo.svg")   },
+  { name: "Illinois",       logo: WIKI_LOGO("Illinois_Fighting_Illini_logo.svg") },
+  { name: "Wisconsin",      logo: WIKI_LOGO("Wisconsin_Badgers_logo.svg")       },
+  { name: "Minnesota",      logo: WIKI_LOGO("Minnesota_Golden_Gophers_logo.svg") },
+  { name: "Iowa",           logo: ESPN_LOGO(2294)                                }, // Hawkeye_Logo.svg is Marvel/Disney+
+  { name: "Nebraska",       logo: WIKI_LOGO("Nebraska_Cornhuskers_logo.svg")    },
+  { name: "Rutgers",        logo: WIKI_LOGO("Rutgers_Scarlet_Knights_logo.svg") },
+  { name: "Maryland",       logo: WIKI_LOGO("Maryland_Terrapins_logo.svg")      },
+  { name: "USC",            logo: WIKI_LOGO("USC_Trojans_logo.svg")             },
+  { name: "UCLA",           logo: WIKI_LOGO("UCLA_Bruins_logo.svg")             },
+  { name: "Oregon",         logo: WIKI_LOGO("Oregon_Ducks_logo.svg")            },
+  { name: "Washington",     logo: WIKI_LOGO("Washington_Huskies_logo.svg")      },
 ];
 
 const STATS = [
