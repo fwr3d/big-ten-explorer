@@ -110,41 +110,52 @@ export default function Home() {
         {/* Divider */}
         <div className="w-full" style={{ borderTop: "1px solid #e2e8f0" }} />
 
-        {/* School cards grid */}
-        <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          {SCHOOLS.map((school, i) => (
-            <motion.div
-              key={school.name}
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              transition={{ duration: 0.35, delay: 0.24 + i * 0.04 }}
-              className="flex flex-col items-center gap-3 p-3 cursor-pointer"
-            >
-              {/* School logo via Wikimedia Commons */}
-              <img
-                src={school.logo}
-                alt={`${school.name} logo`}
-                className="w-12 h-12 object-contain"
-              />
-              {/* School name */}
-              <span
-                className="text-xs font-medium text-center leading-tight"
-                style={{ color: "#0f172a" }}
+        {/* School marquee */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          transition={{ duration: 0.4, delay: 0.24 }}
+          className="w-full overflow-hidden relative"
+          style={{
+            maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+            WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+          }}
+        >
+          {/* Duplicate schools for seamless loop */}
+          <div
+            className="flex gap-10"
+            style={{ animation: "marquee 30s linear infinite", width: "max-content" }}
+          >
+            {[...SCHOOLS, ...SCHOOLS].map((school, i) => (
+              <div
+                key={i}
+                className="flex flex-col items-center gap-3 cursor-pointer"
+                style={{ width: "80px" }}
               >
-                {school.name}
-              </span>
-              {/* TODO: Link to /schools/[id] page */}
-            </motion.div>
-          ))}
-        </div>
+                {/* TODO: Link to /schools/[id] page */}
+                <img
+                  src={school.logo}
+                  alt={`${school.name} logo`}
+                  className="w-16 h-16 object-contain"
+                />
+                <span
+                  className="text-xs font-medium text-center leading-tight"
+                  style={{ color: "#0f172a" }}
+                >
+                  {school.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* CTA buttons */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          transition={{ duration: 0.4, delay: 0.24 + SCHOOLS.length * 0.04 }}
+          transition={{ duration: 0.4, delay: 0.4 }}
           className="flex flex-col sm:flex-row gap-3 mt-2"
         >
           {/* TODO: Link to /schools */}
