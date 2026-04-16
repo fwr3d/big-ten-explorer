@@ -50,25 +50,12 @@ export default function Home() {
     >
       <div className="w-full max-w-5xl flex flex-col items-center gap-12 px-6">
 
-        {/* Eyebrow pill */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          transition={{ duration: 0.4 }}
-          className="flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide"
-          style={{ backgroundColor: "#e0eaff", color: "#3b82f6" }}
-        >
-          <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ backgroundColor: "#3b82f6" }} />
-          2024–25 Season
-        </motion.div>
-
         {/* Headline */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          transition={{ duration: 0.4, delay: 0.08 }}
+          transition={{ duration: 0.4 }}
           className="flex flex-col items-center text-center gap-5"
         >
           <h1 className="flex items-center justify-center gap-5 text-6xl sm:text-7xl font-black tracking-tighter leading-none">
