@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 // TODO: Replace with real data fetched from /lib/api.ts
 // Logos: Wikimedia Commons where available, ESPN CDN fallback where Wikimedia lacks the actual athletic mark
@@ -102,13 +103,13 @@ export default function Home() {
           transition={{ duration: 0.4, delay: 0.24 }}
           className="flex flex-col sm:flex-row gap-3"
         >
-          {/* TODO: Link to /schools */}
-          <button
+          <Link
+            href="/schools"
             className="px-7 py-3 rounded-full text-sm font-semibold text-white transition-opacity hover:opacity-80"
             style={{ backgroundColor: "#0f172a" }}
           >
             Explore all schools
-          </button>
+          </Link>
           {/* TODO: Link to /compare */}
           <button
             className="px-7 py-3 rounded-full text-sm font-semibold transition-colors hover:opacity-80"
