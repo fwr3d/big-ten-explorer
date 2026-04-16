@@ -48,7 +48,7 @@ export default function Home() {
       className="relative min-h-screen flex flex-col items-center"
       style={{ backgroundColor: "#f8f9fb", color: "#0f172a" }}
     >
-      <div className="flex-1 w-full max-w-5xl flex flex-col items-center justify-center gap-12 px-6 pb-48">
+      <div className="flex-1 w-full max-w-5xl flex flex-col items-center justify-center gap-12 px-6 pb-48 mt-24">
 
         {/* Headline */}
         <motion.div
