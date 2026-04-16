@@ -45,10 +45,10 @@ const fadeUp = {
 export default function Home() {
   return (
     <main
-      className="min-h-screen flex flex-col items-center"
+      className="relative min-h-screen flex flex-col items-center"
       style={{ backgroundColor: "#f8f9fb", color: "#0f172a" }}
     >
-      <div className="flex-1 w-full max-w-5xl flex flex-col items-center justify-center gap-12 px-6">
+      <div className="flex-1 w-full max-w-5xl flex flex-col items-center justify-center gap-12 px-6 pb-48">
 
         {/* Headline */}
         <motion.div
@@ -124,13 +124,13 @@ export default function Home() {
 
       </div>
 
-      {/* School marquee — full bleed at bottom */}
+      {/* School marquee — pinned to bottom */}
       <motion.div
         variants={fadeUp}
         initial="hidden"
         animate="show"
         transition={{ duration: 0.4, delay: 0.32 }}
-        className="w-full py-10 mt-40"
+        className="absolute bottom-0 left-0 right-0 py-10"
         style={{ backgroundColor: "#f1f5f9" }}
       >
         <div
