@@ -116,16 +116,7 @@ export default function Home() {
               initial="hidden"
               animate="show"
               transition={{ duration: 0.35, delay: 0.24 + i * 0.04 }}
-              whileHover={{
-                y: -4,
-                boxShadow: "0 0 0 2px #3b82f6, 0 8px 24px rgba(59,130,246,0.12)",
-              }}
-              className="flex flex-col items-center gap-3 rounded-2xl p-5 cursor-pointer"
-              style={{
-                backgroundColor: "#ffffff",
-                border: "1px solid #e2e8f0",
-                transition: "box-shadow 0.2s, transform 0.2s",
-              }}
+              className="flex flex-col items-center gap-3 p-3 cursor-pointer"
             >
               {/* School logo via Wikimedia Commons */}
               <img
