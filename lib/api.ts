@@ -50,7 +50,18 @@ const FIELDS = [
   "latest.admissions.admission_rate.overall",
   "latest.completion.completion_rate_4yr_150nt",
 ].join(",");
-
+interface ScorecardResult {
+  id: number;
+  "school.name": string;
+  "school.state": string;
+  "school.city": string;
+  "school.ownership": number;
+  "latest.student.size": number;
+  "latest.cost.tuition.in_state": number;
+  "latest.cost.tuition.out_of_state": number;
+  "latest.admissions.admission_rate.overall": number;
+  "latest.completion.completion_rate_4yr_150nt": number;
+}
 export async function fetchBigTenUniversities(): Promise<University[]> {
   if (!API_KEY) throw new Error("COLLEGE_SCORECARD_API_KEY is not set in .env.local");
 
@@ -63,9 +74,34 @@ export async function fetchBigTenUniversities(): Promise<University[]> {
   const json = await res.json();
 
   // TODO: Map json.results[] to University[] using SCHOOL_META for logo/color/slug/region
-  return json.results;
+  return json.results.map((result: ScorecardResult ) => {
+    const meta = SCHOOL_META[result.id];
+    return{
+      id: result.id,
+      name: result["school.name"],
+      slug: meta.slug,
+      state: result["school.state"],
+      city: result["school.city"],
+      type: result["school.ownership"] === 1 ? "Public" : "Private",
+      enrollment: result["latest.student.size"],
+      inStateTuition: result["latest.cost.tuition.in_state"],
+      outOfStateTuition: result[  "latest.cost.tuition.out_of_state"],
+      acceptanceRate: result["latest.admissions.admission_rate.overall"],
+      graduationRate: result["latest.completion.completion_rate_4yr_150nt"],
+      logo: meta.logo,
+      color: meta.color,
+      region: meta.region,
+    }
+  });
 }
-
+export function getIdBySlug(slug: string): number | null {
+  for (const [id, meta] of Object.entries(SCHOOL_META)) {
+    if (meta.slug === slug) {
+      return parseInt(id);
+    }
+  }
+  return null;
+}
 export async function fetchUniversityById(id: number): Promise<University | null> {
   if (!API_KEY) throw new Error("COLLEGE_SCORECARD_API_KEY is not set in .env.local");
 
@@ -75,7 +111,23 @@ export async function fetchUniversityById(id: number): Promise<University | null
   if (!res.ok) throw new Error(`College Scorecard API error: ${res.status}`);
 
   const json = await res.json();
-
-  // TODO: Map json.results[0] to University using SCHOOL_META for logo/color/slug/region
-  return json.results[0] ?? null;
+  const result = json.results[0];
+  if(!result) return null
+  const meta = SCHOOL_META[result.id];
+  return {
+      id: result.id,
+      name: result["school.name"],
+      slug: meta.slug,
+      state: result["school.state"],
+      city: result["school.city"],
+      type: result["school.ownership"] === 1 ? "Public" : "Private",
+      enrollment: result["latest.student.size"],
+      inStateTuition: result["latest.cost.tuition.in_state"],
+      outOfStateTuition: result[  "latest.cost.tuition.out_of_state"],
+      acceptanceRate: result["latest.admissions.admission_rate.overall"],
+      graduationRate: result["latest.completion.completion_rate_4yr_150nt"],
+      logo: meta.logo,
+      color: meta.color,
+      region: meta.region,
+  }
 }
